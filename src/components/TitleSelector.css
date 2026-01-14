@@ -1,0 +1,161 @@
+.title-selector {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #667eea;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-4px);
+}
+
+.title-header {
+  margin-bottom: 2rem;
+}
+
+.title-header h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-message .material-icons {
+  font-size: 3rem;
+  color: #667eea;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-message p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background: #fee;
+  border-radius: 8px;
+  border-left: 4px solid #c33;
+}
+
+.error-message p {
+  color: #c33;
+  margin-bottom: 1rem;
+}
+
+.retry-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background: #5568d3;
+}
+
+.title-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.title-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #f9f9f9;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.title-button:hover {
+  background: #f0f4ff;
+  border-color: #667eea;
+  transform: translateX(4px);
+}
+
+.title-number {
+  font-weight: 700;
+  color: #667eea;
+  min-width: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.title-text {
+  flex: 1;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.title-button .material-icons {
+  color: #999;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.title-button:hover .material-icons {
+  color: #667eea;
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .title-selector {
+    padding: 1.5rem;
+  }
+
+  .title-button {
+    padding: 1rem;
+  }
+
+  .title-text {
+    font-size: 0.9rem;
+  }
+}

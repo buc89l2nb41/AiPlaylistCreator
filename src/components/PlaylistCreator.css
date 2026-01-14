@@ -5,125 +5,268 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.playlist-form {
+.back-button {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #667eea;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.back-button:hover {
+  transform: translateX(-4px);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.project-header h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin: 0;
+  flex: 1;
+}
+
+.restart-button {
+  background: #f0f0f0;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.restart-button:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.project-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project-section {
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.project-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.project-section h3 .material-icons {
+  color: #667eea;
+  font-size: 1.5rem;
+}
+
+.project-section p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.tip-box {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.tip-box .material-icons {
+  color: #856404;
+  flex-shrink: 0;
+}
+
+.tip-box p {
+  color: #856404;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.section-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.lyrics-settings {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.form-group {
+.setting-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.form-group label {
+.setting-group label {
   font-weight: 600;
   color: #333;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-.prompt-input {
-  width: 100%;
-  padding: 1rem;
+.setting-select {
+  padding: 0.75rem;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
-  resize: vertical;
-  transition: border-color 0.3s ease;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
 }
 
-.prompt-input:focus {
+.setting-select:focus {
   outline: none;
   border-color: #667eea;
 }
 
-.prompt-input:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-}
-
-.prompt-input::placeholder {
-  color: #999;
-}
-
-.generate-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
+.setting-button {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
   border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.9rem;
+  color: #666;
+  transition: all 0.2s ease;
   align-self: flex-start;
 }
 
-.generate-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+.setting-button:hover {
+  background: #e0e0e0;
+  color: #333;
 }
 
-.generate-button:active:not(:disabled) {
-  transform: translateY(0);
+.setting-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.generate-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.setting-input {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 80px;
+  text-align: center;
 }
 
-.error-message {
-  background-color: #fee;
-  color: #c33;
+.setting-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.structure-button {
+  background: white;
+  border: 2px solid #e0e0e0;
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  border-left: 4px solid #c33;
+  cursor: pointer;
   font-size: 0.9rem;
-}
-
-.selected-genre-badge {
+  color: #333;
+  width: 100%;
+  text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #f0f4ff;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  border: 2px solid #667eea;
-}
-
-.selected-genre-badge span {
-  font-weight: 600;
-  color: #667eea;
-}
-
-.back-button {
-  background: white;
-  border: 1px solid #667eea;
-  color: #667eea;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
-.back-button:hover {
-  background: #667eea;
-  color: white;
+.structure-button:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
 }
 
-.loading-message {
-  text-align: center;
-  padding: 3rem 1rem;
+.setting-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.loading-message p {
+.option-button {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
   color: #666;
-  font-size: 1.1rem;
+  transition: all 0.2s ease;
+}
+
+.option-button:hover {
+  background: #f0f4ff;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.generate-lyrics-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.generate-lyrics-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -131,7 +274,17 @@
     padding: 1.5rem;
   }
 
-  .generate-button {
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .setting-options {
+    flex-direction: column;
+  }
+
+  .option-button {
     width: 100%;
   }
 }

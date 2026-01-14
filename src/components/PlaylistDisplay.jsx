@@ -1,27 +1,39 @@
 import './PlaylistDisplay.css'
 
 function PlaylistDisplay({ playlist }) {
-  const handleSpotifyClick = () => {
-    // Spotify에서 검색하거나 플레이리스트를 생성하는 로직
-    // 실제 구현 시 Spotify API를 사용할 수 있습니다
-    alert('Spotify 통합 기능은 추후 구현 예정입니다.')
+  const handleCopyTitle = () => {
+    navigator.clipboard.writeText(playlist.title)
+    alert('제목이 클립보드에 복사되었습니다!')
+  }
+
+  const handleCopyDescription = () => {
+    navigator.clipboard.writeText(playlist.description)
+    alert('설명이 클립보드에 복사되었습니다!')
   }
 
   return (
     <div className="playlist-display">
       <div className="playlist-header">
-        <h2>{playlist.title}</h2>
-        <p className="playlist-description">{playlist.description}</p>
-      </div>
-      
-      <div className="playlist-actions">
-        <button onClick={handleSpotifyClick} className="spotify-button">
-          Spotify에 저장
-        </button>
+        <div className="title-section">
+          <h2>{playlist.title}</h2>
+          <button onClick={handleCopyTitle} className="copy-button" title="제목 복사">
+            📋
+          </button>
+        </div>
+        <div className="description-section">
+          <p className="playlist-description">{playlist.description}</p>
+          <button onClick={handleCopyDescription} className="copy-button" title="설명 복사">
+            📋
+          </button>
+        </div>
+        <div className="youtube-hint">
+          <p>💡 이 제목과 설명을 유튜브 플레이리스트 업로드 시 사용하세요!</p>
+        </div>
       </div>
 
       <div className="playlist-tracks">
-        <h3>트랙 목록 ({playlist.tracks.length}곡)</h3>
+        <h3>추천 곡 목록 ({playlist.tracks.length}곡)</h3>
+        <p className="tracks-hint">아래 곡들을 유튜브에서 검색하여 플레이리스트에 추가하세요</p>
         <ul className="track-list">
           {playlist.tracks.map((track, index) => (
             <li key={index} className="track-item">
@@ -32,12 +44,12 @@ function PlaylistDisplay({ playlist }) {
               </div>
               <div className="track-actions">
                 <a 
-                  href={`https://open.spotify.com/search/${encodeURIComponent(`${track.name} ${track.artist}`)}`}
+                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(`${track.name} ${track.artist}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="spotify-link"
+                  className="youtube-link"
                 >
-                  Spotify에서 듣기
+                  🔍 YouTube에서 검색
                 </a>
               </div>
             </li>

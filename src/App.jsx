@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import GenreSelector from './components/GenreSelector'
+import TitleSelector from './components/TitleSelector'
 import PlaylistCreator from './components/PlaylistCreator'
 import PlaylistDisplay from './components/PlaylistDisplay'
 import SettingsModal from './components/SettingsModal'
@@ -11,7 +12,9 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [selectedGenre, setSelectedGenre] = useState(null)
+  const [selectedTitle, setSelectedTitle] = useState(null)
   const [showGenreSelector, setShowGenreSelector] = useState(true)
+  const [showTitleSelector, setShowTitleSelector] = useState(false)
 
   useEffect(() => {
     // API 키가 없으면 자동으로 설정 모달 열기
@@ -25,14 +28,20 @@ function App() {
 
   useEffect(() => {
     // 설정 모달이 닫힐 때 API 키가 있으면 장르 선택 화면 표시
-    if (!settingsOpen && hasApiKey() && !selectedGenre) {
+    if (!settingsOpen && hasApiKey() && !selectedGenre && !selectedTitle) {
       setShowGenreSelector(true)
     }
-  }, [settingsOpen, selectedGenre])
+  }, [settingsOpen, selectedGenre, selectedTitle])
 
   const handleGenreSelect = (genre) => {
     setSelectedGenre(genre)
     setShowGenreSelector(false)
+    setShowTitleSelector(true)
+  }
+
+  const handleTitleSelect = (title) => {
+    setSelectedTitle(title)
+    setShowTitleSelector(false)
   }
 
   const handlePlaylistGenerated = (newPlaylist) => {
@@ -49,7 +58,23 @@ function App() {
 
   const handleBackToGenre = () => {
     setSelectedGenre(null)
+    setSelectedTitle(null)
     setShowGenreSelector(true)
+    setShowTitleSelector(false)
+    setPlaylist(null)
+  }
+
+  const handleBackToTitle = () => {
+    setSelectedTitle(null)
+    setShowTitleSelector(true)
+    setPlaylist(null)
+  }
+
+  const handleRestart = () => {
+    setSelectedGenre(null)
+    setSelectedTitle(null)
+    setShowGenreSelector(true)
+    setShowTitleSelector(false)
     setPlaylist(null)
   }
 
@@ -59,7 +84,7 @@ function App() {
         <div className="header-content">
           <div>
             <h1>🎵 AI Playlist Creator</h1>
-            <p>AI로 나만의 플레이리스트를 만들어보세요</p>
+            <p>AI로 유튜브 플레이리스트 제목을 추천받아보세요</p>
           </div>
           <button 
             className="settings-button"
@@ -76,11 +101,23 @@ function App() {
           <GenreSelector onGenreSelect={handleGenreSelect} />
         )}
         
-        {selectedGenre && !showGenreSelector && (
+        {showTitleSelector && selectedGenre && (
+          <TitleSelector 
+            genre={selectedGenre}
+            onTitleSelect={handleTitleSelect}
+            onBack={handleBackToGenre}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        )}
+        
+        {selectedTitle && !showTitleSelector && (
           <PlaylistCreator 
             genre={selectedGenre}
+            title={selectedTitle}
             onPlaylistGenerated={handlePlaylistGenerated}
-            onBack={handleBackToGenre}
+            onBack={handleBackToTitle}
+            onRestart={handleRestart}
             loading={loading}
             setLoading={setLoading}
           />

@@ -23,46 +23,76 @@
   border-bottom: 2px solid #f0f0f0;
 }
 
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 .playlist-header h2 {
   color: #333;
   font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  flex: 1;
+}
+
+.description-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .playlist-description {
   color: #666;
   font-size: 1rem;
   line-height: 1.6;
+  flex: 1;
+  margin: 0;
 }
 
-.playlist-actions {
-  margin-bottom: 2rem;
-}
-
-.spotify-button {
-  background: #1db954;
-  color: white;
+.copy-button {
+  background: #f0f0f0;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.spotify-button:hover {
-  background: #1ed760;
-  transform: translateY(-2px);
+.copy-button:hover {
+  background: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.youtube-hint {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.youtube-hint p {
+  margin: 0;
+  color: #856404;
+  font-size: 0.9rem;
 }
 
 .playlist-tracks h3 {
   color: #333;
   font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.tracks-hint {
+  color: #666;
+  font-size: 0.9rem;
   margin-bottom: 1rem;
+  font-style: italic;
 }
 
 .track-list {
@@ -117,19 +147,20 @@
   gap: 0.5rem;
 }
 
-.spotify-link {
-  color: #1db954;
+.youtube-link {
+  color: #ff0000;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
-  border: 1px solid #1db954;
+  border: 1px solid #ff0000;
   border-radius: 6px;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.spotify-link:hover {
-  background: #1db954;
+.youtube-link:hover {
+  background: #ff0000;
   color: white;
 }
 
@@ -147,7 +178,7 @@
     margin-top: 0.5rem;
   }
 
-  .spotify-link {
+  .youtube-link {
     flex: 1;
     text-align: center;
   }
