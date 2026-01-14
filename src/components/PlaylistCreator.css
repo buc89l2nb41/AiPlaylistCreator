@@ -84,6 +84,48 @@
   font-size: 0.9rem;
 }
 
+.selected-genre-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f0f4ff;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 2px solid #667eea;
+}
+
+.selected-genre-badge span {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.back-button {
+  background: white;
+  border: 1px solid #667eea;
+  color: #667eea;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: #667eea;
+  color: white;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.loading-message p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .playlist-creator {
     padding: 1.5rem;

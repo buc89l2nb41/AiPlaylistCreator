@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import GenreSelector from './components/GenreSelector'
 import PlaylistCreator from './components/PlaylistCreator'
 import PlaylistDisplay from './components/PlaylistDisplay'
 import SettingsModal from './components/SettingsModal'
@@ -9,13 +10,30 @@ function App() {
   const [playlist, setPlaylist] = useState(null)
   const [loading, setLoading] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [selectedGenre, setSelectedGenre] = useState(null)
+  const [showGenreSelector, setShowGenreSelector] = useState(true)
 
   useEffect(() => {
     // API 키가 없으면 자동으로 설정 모달 열기
     if (!hasApiKey()) {
       setSettingsOpen(true)
+    } else {
+      // API 키가 있으면 장르 선택 화면 표시
+      setShowGenreSelector(true)
     }
   }, [])
+
+  useEffect(() => {
+    // 설정 모달이 닫힐 때 API 키가 있으면 장르 선택 화면 표시
+    if (!settingsOpen && hasApiKey() && !selectedGenre) {
+      setShowGenreSelector(true)
+    }
+  }, [settingsOpen, selectedGenre])
+
+  const handleGenreSelect = (genre) => {
+    setSelectedGenre(genre)
+    setShowGenreSelector(false)
+  }
 
   const handlePlaylistGenerated = (newPlaylist) => {
     setPlaylist(newPlaylist)
@@ -27,6 +45,12 @@ function App() {
 
   const handleCloseSettings = () => {
     setSettingsOpen(false)
+  }
+
+  const handleBackToGenre = () => {
+    setSelectedGenre(null)
+    setShowGenreSelector(true)
+    setPlaylist(null)
   }
 
   return (
@@ -48,11 +72,19 @@ function App() {
       </header>
       
       <main className="app-main">
-        <PlaylistCreator 
-          onPlaylistGenerated={handlePlaylistGenerated}
-          loading={loading}
-          setLoading={setLoading}
-        />
+        {showGenreSelector && hasApiKey() && (
+          <GenreSelector onGenreSelect={handleGenreSelect} />
+        )}
+        
+        {selectedGenre && !showGenreSelector && (
+          <PlaylistCreator 
+            genre={selectedGenre}
+            onPlaylistGenerated={handlePlaylistGenerated}
+            onBack={handleBackToGenre}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        )}
         
         {playlist && (
           <PlaylistDisplay playlist={playlist} />
