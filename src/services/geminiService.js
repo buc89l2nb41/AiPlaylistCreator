@@ -124,7 +124,7 @@ function parseTextToPlaylist(text, prompt) {
 }
 
 /**
- * Gemini API 텍스트 생성 테스트 (Chat - gemini-pro)
+ * Gemini API 텍스트 생성 테스트 (Chat - gemini-3-flash-preview)
  * @returns {Promise<{success: boolean, message: string, result?: string}>}
  */
 export async function testTextGeneration() {
@@ -139,7 +139,7 @@ export async function testTextGeneration() {
 
   try {
     // 정상 동작하는 generatePlaylistWithGemini와 완전히 동일한 구조 사용
-    const TEST_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`
+    const TEST_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`
     
     const response = await fetch(TEST_API_URL, {
       method: 'POST',
