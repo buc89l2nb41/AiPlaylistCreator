@@ -2,16 +2,23 @@ import { useState, useEffect } from 'react'
 import { generatePlaylistTitles } from '../services/geminiService'
 import './TitleSelector.css'
 
-function TitleSelector({ genre, onTitleSelect, onBack, loading, setLoading }) {
+function TitleSelector({ genre, onTitleSelect, onBack, loading, setLoading, cachedTitles, onTitlesGenerated }) {
   const [titles, setTitles] = useState([])
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    // 장르가 선택되면 자동으로 제목 생성
+    // 캐시된 제목이 있으면 사용, 없으면 생성
     if (genre) {
-      handleGenerateTitles()
+      if (cachedTitles && cachedTitles.length > 0) {
+        // 캐시된 제목이 있으면 바로 사용
+        setTitles(cachedTitles)
+      } else {
+        // 캐시된 제목이 없으면 새로 생성
+        handleGenerateTitles()
+      }
     }
-  }, [genre])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [genre, cachedTitles])
 
   const handleGenerateTitles = async () => {
     setError(null)
@@ -20,6 +27,10 @@ function TitleSelector({ genre, onTitleSelect, onBack, loading, setLoading }) {
     try {
       const generatedTitles = await generatePlaylistTitles(genre)
       setTitles(generatedTitles)
+      // 생성된 제목을 부모 컴포넌트에 전달하여 캐시에 저장
+      if (onTitlesGenerated) {
+        onTitlesGenerated(genre, generatedTitles)
+      }
     } catch (err) {
       setError(err.message || '제목 생성 중 오류가 발생했습니다.')
       console.error('Error generating titles:', err)

@@ -15,6 +15,8 @@ function App() {
   const [selectedTitle, setSelectedTitle] = useState(null)
   const [showGenreSelector, setShowGenreSelector] = useState(true)
   const [showTitleSelector, setShowTitleSelector] = useState(false)
+  // 장르별 제목 캐시 (장르를 키로 사용)
+  const [titleCache, setTitleCache] = useState({})
 
   useEffect(() => {
     // API 키가 없으면 자동으로 설정 모달 열기
@@ -37,11 +39,25 @@ function App() {
     setSelectedGenre(genre)
     setShowGenreSelector(false)
     setShowTitleSelector(true)
+    // 장르를 다시 선택하면 캐시를 무시하고 새로 생성 (캐시 삭제)
+    setTitleCache(prev => {
+      const newCache = { ...prev }
+      delete newCache[genre]
+      return newCache
+    })
   }
 
   const handleTitleSelect = (title) => {
     setSelectedTitle(title)
     setShowTitleSelector(false)
+  }
+
+  // 제목 목록을 캐시에 저장하는 함수
+  const handleTitlesGenerated = (genre, titles) => {
+    setTitleCache(prev => ({
+      ...prev,
+      [genre]: titles
+    }))
   }
 
   const handlePlaylistGenerated = (newPlaylist) => {
@@ -108,6 +124,8 @@ function App() {
             onBack={handleBackToGenre}
             loading={loading}
             setLoading={setLoading}
+            cachedTitles={titleCache[selectedGenre]}
+            onTitlesGenerated={handleTitlesGenerated}
           />
         )}
         
